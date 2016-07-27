@@ -1,0 +1,4 @@
+name: narcoleptic
+random-route: true
+path: target/narcoleptic.jar
+memory: 256m

@@ -1,0 +1,7 @@
+name: devourer
+random-route: true
+path: target/devourer.jar
+memory: 256m
+buildpack: https://github.com/cf-guardian/java-buildpack
+env:
+  JVM_ARGS: "-XX:NativeMemoryTracking=detail"
