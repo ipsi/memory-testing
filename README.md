@@ -1,7 +1,7 @@
 # Purpose
 This project is for testing how Java & Garden / CGroups handle memory.
 
-Each application is a Spring Boot application, so compile with `mvn clean package`.
+Each application is a Spring Boot application, so compile with `./mvnw clean package`.
 
 The `devourer` application is the target for running out of memory. It should be either deployed
 to CF, or started with the command `run.sh`, inside a memory group limited to 256m.
