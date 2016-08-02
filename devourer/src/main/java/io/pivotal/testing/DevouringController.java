@@ -1,5 +1,6 @@
 package io.pivotal.testing;
 
+import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
@@ -8,6 +9,9 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestOperations;
 import org.springframework.web.client.RestTemplate;
 
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -33,5 +37,14 @@ public class DevouringController {
         v.put("taste", "delicious");
 
         return v;
+    }
+
+    @RequestMapping("/devour_lorem")
+    public void devourLorem(HttpServletResponse response) throws IOException {
+        try (InputStream inputStream = getClass().getResourceAsStream("/lorem.txt")) {
+            response.setContentLength(530160071);
+            response.setContentType("text/plain");
+            IOUtils.copy(inputStream, response.getOutputStream());
+        }
     }
 }

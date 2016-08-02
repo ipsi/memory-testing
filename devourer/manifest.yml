@@ -1,7 +1,22 @@
 name: devourer
 random-route: true
 path: target/devourer.jar
-memory: 256m
-buildpack: https://github.com/cf-guardian/java-buildpack
+memory: 512m
+buildpack: https://github.com/cloudfoundry/java-buildpack.git
 env:
-  JVM_ARGS: "-XX:NativeMemoryTracking=detail"
+  JAVA_OPTS: >-
+    -XX:InitialCodeCacheSize=16m
+    -XX:ReservedCodeCacheSize=16m
+    -XX:CompressedClassSpaceSize=8m
+    -XX:NativeMemoryTracking=detail
+    -XX:MaxDirectMemorySize=1m
+    -XX:+AlwaysPreTouch
+  #JBP_LOG_LEVEL: DEBUG
+  JBP_CONFIG_JMX: |-
+    enabled: true
+  JBP_CONFIG_OPEN_JDK_JRE: |-
+    memory_calculator:
+      memory_sizes:
+        heap: 48m
+        metaspace: 48m
+        stack: 256k
