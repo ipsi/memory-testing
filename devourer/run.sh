@@ -1,17 +1,14 @@
+export MALLOC_ARENA_MAX=2
 java \
-    -Xss512K \
-    -Xmx96M \
-    -Xms96M \
-    -XX:MaxMetaspaceSize=64M \
-    -XX:MetaspaceSize=64M \
-    -XX:InitialCodeCacheSize=64m \
-    -XX:ReservedCodeCacheSize=64m \
-    -XX:CompressedClassSpaceSize=64m \
-    -Dcom.sun.management.jmxremote \
-    -XX:NewRatio=11 \
-    -XX:SurvivorRatio=10 \
-    -XX:+UsePerfData \
-    -XX:NativeMemoryTracking=detail \
+    -Xss256K \
+    -Xmx48M \
+    -Xms48M \
+    -XX:MaxMetaspaceSize=48M \
+    -XX:MetaspaceSize=48M \
+    -XX:InitialCodeCacheSize=16m \
+    -XX:ReservedCodeCacheSize=16m \
+    -XX:CompressedClassSpaceSize=8m \
+    -XX:+AlwaysPreTouch \
     -XX:+StartAttachListener \
     -jar \
     target/devourer.jar

@@ -1,12 +1,15 @@
-name: devourer
+name: devourer-two
 random-route: true
 path: target/devourer.jar
 memory: 512m
 buildpack: https://github.com/cloudfoundry/java-buildpack.git
 env:
   JAVA_OPTS: >-
+    -Xint
     -XX:InitialCodeCacheSize=16m
     -XX:ReservedCodeCacheSize=16m
+    -XX:CompressedClassSpaceSize=8m
+    -XX:MaxDirectMemorySize=1m
     -XX:+AlwaysPreTouch
   #JBP_LOG_LEVEL: DEBUG
   JBP_CONFIG_JMX: |-
@@ -17,5 +20,4 @@ env:
       memory_sizes:
         heap: 48m
         metaspace: 48m
-        permgen: 48m
         stack: 256k
